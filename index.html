@@ -7,7 +7,7 @@
     <title>Liberations | Android & Flutter Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,16 +16,18 @@
         }
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --accent: #6366f1;
-            --accent-hover: #818cf8;
-            --border: #2a2a3a;
-            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --flutter-blue: #02569B;
+            --flutter-dark-blue: #042B59;
+            --flutter-light-blue: #13B9FD;
+            --flutter-cyan: #54C5F8;
+            --flutter-purple: #6875FB;
+            --flutter-pink: #FF4081;
+            --text-primary: #202124;
+            --text-secondary: #5F6368;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --gradient-hero: linear-gradient(135deg, #02569B 0%, #0175C2 25%, #13B9FD 50%, #54C5F8 75%, #6875FB 100%);
+            --gradient-card: linear-gradient(135deg, rgba(19, 185, 253, 0.1) 0%, rgba(104, 117, 251, 0.1) 100%);
         }
 
         html {
@@ -33,12 +35,11 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-primary);
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-white);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
         body::before {
@@ -63,14 +64,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(10, 10, 15, 0.85) 0%, rgba(10, 10, 15, 0.9) 50%, rgba(10, 10, 15, 0.95) 100%);
+            background: rgba(255, 255, 255, 0.92);
             z-index: -1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
         }
 
         nav {
@@ -79,24 +74,25 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 24px;
+            padding: 12px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 1.4rem;
             font-weight: 700;
-            background: var(--gradient-1);
+            background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -114,10 +110,27 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-hero);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: var(--flutter-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .hero {
@@ -125,71 +138,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 120px 24px 80px;
             position: relative;
-            padding-top: 80px;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: var(--gradient-2);
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.08;
-            bottom: -100px;
-            left: -100px;
         }
 
         .hero-content {
             text-align: center;
-            position: relative;
-            z-index: 1;
+            max-width: 800px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            padding: 8px 20px;
+            background: var(--gradient-card);
+            border: 1px solid rgba(19, 185, 253, 0.3);
             border-radius: 50px;
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--flutter-blue);
             margin-bottom: 32px;
+            font-weight: 500;
         }
 
         .hero-badge .dot {
             width: 8px;
             height: 8px;
-            background: #22c55e;
+            background: #34A853;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-family: 'Google Sans', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.2;
             margin-bottom: 24px;
-            letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
 
         .hero h1 .highlight {
-            background: var(--gradient-1);
+            background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -200,6 +195,7 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 40px;
+            line-height: 1.8;
         }
 
         .hero-buttons {
@@ -213,8 +209,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 14px 32px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 1rem;
             text-decoration: none;
@@ -224,29 +220,34 @@
         }
 
         .btn-primary {
-            background: var(--gradient-1);
+            background: var(--gradient-hero);
             color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 20px rgba(19, 185, 253, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 30px rgba(19, 185, 253, 0.4);
         }
 
         .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            background: var(--bg-white);
+            color: var(--flutter-blue);
+            border: 2px solid var(--flutter-light-blue);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-secondary);
-            border-color: var(--accent);
+            background: var(--flutter-light-blue);
+            color: white;
         }
 
         section {
-            padding: 100px 0;
+            padding: 100px 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-header {
@@ -255,178 +256,271 @@
         }
 
         .section-header h2 {
+            font-family: 'Google Sans', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 16px;
+            color: var(--text-primary);
         }
 
         .section-header p {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(19, 185, 253, 0.15);
+            border-color: var(--flutter-light-blue);
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: var(--gradient-card);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .skills-section {
+            background: linear-gradient(180deg, rgba(248, 249, 250, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
         }
 
         .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 48px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             transition: all 0.3s ease;
         }
 
         .skill-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(19, 185, 253, 0.12);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
         }
 
         .skill-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-1);
-            border-radius: 12px;
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-hero);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .skill-header h3 {
+            font-family: 'Google Sans', sans-serif;
             font-size: 1.5rem;
-            margin-bottom: 20px;
+            color: var(--text-primary);
         }
 
-        .skill-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-        }
-
-        .skill-card p {
+        .skill-card > p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
         }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 10px;
         }
 
         .skill-tag {
-            padding: 4px 12px;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
+            padding: 8px 16px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--flutter-blue);
+            border: 1px solid rgba(19, 185, 253, 0.2);
+        }
+
+        .projects-section {
+            background: linear-gradient(180deg, var(--flutter-dark-blue) 0%, var(--flutter-blue) 100%);
+            color: white;
+        }
+
+        .projects-section .section-header h2 {
+            color: white;
+        }
+
+        .projects-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
 
         .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .project-image {
-            height: 200px;
-            background: var(--bg-secondary);
+            height: 160px;
+            background: linear-gradient(135deg, rgba(19, 185, 253, 0.3) 0%, rgba(104, 117, 251, 0.3) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            border-bottom: 1px solid var(--border);
         }
 
         .project-content {
-            padding: 24px;
+            padding: 28px;
         }
 
         .project-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
         .project-content p {
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.95rem;
-            margin-bottom: 16px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 12px;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 16px;
-            background: var(--bg-secondary);
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            color: var(--text-primary);
+            color: white;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            background: var(--accent);
+            background: white;
+            color: var(--flutter-blue);
         }
 
         .contact-section {
-            background: var(--bg-secondary);
+            background: var(--bg-light);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--bg-white);
             border-radius: 16px;
-            padding: 32px;
+            padding: 40px;
             text-align: center;
             transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .contact-card:hover {
-            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(19, 185, 253, 0.12);
         }
 
         .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            background: var(--gradient-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
         }
 
         .contact-card h3 {
+            font-family: 'Google Sans', sans-serif;
             font-size: 1.1rem;
             margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
         .contact-card a {
-            color: var(--accent);
+            color: var(--flutter-blue);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         .contact-card a:hover {
@@ -434,53 +528,62 @@
         }
 
         footer {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
+            background: var(--flutter-dark-blue);
+            color: white;
+            padding: 60px 24px 40px;
         }
 
-        footer p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 32px;
         }
 
         .social-link {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.25rem;
             transition: all 0.3s ease;
         }
 
         .social-link img {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
-            filter: grayscale(100%) brightness(1.5);
-            transition: filter 0.3s ease;
-        }
-
-        .social-link:hover img {
-            filter: grayscale(0%) brightness(1);
+            filter: brightness(0) invert(1);
         }
 
         .social-link:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-text a {
+            color: var(--flutter-cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid,
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -489,7 +592,7 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             .hero-description {
@@ -507,8 +610,15 @@
                 justify-content: center;
             }
 
-            .projects-grid {
+            .features-grid,
+            .skills-grid,
+            .projects-grid,
+            .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -519,6 +629,7 @@
             <div class="logo">Liberations</div>
             <ul class="nav-links">
                 <li><a href="#about">关于</a></li>
+                <li><a href="#features">特点</a></li>
                 <li><a href="#skills">技能</a></li>
                 <li><a href="#projects">项目</a></li>
                 <li><a href="#contact">联系</a></li>
@@ -527,7 +638,6 @@
     </nav>
 
     <section class="hero" id="about">
-        <div class="hero-bg"></div>
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="dot"></span>
@@ -549,40 +659,87 @@
         </div>
     </section>
 
-    <section id="skills">
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>开发理念</h2>
+                <p>专注于高质量移动应用开发，追求极致的用户体验</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>高性能</h3>
+                    <p>原生级别的性能表现，流畅的动画与交互体验，让应用运行如丝般顺滑</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>精美设计</h3>
+                    <p>注重每一个像素的细节，打造视觉与体验俱佳的用户界面</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>可维护</h3>
+                    <p>清晰的代码架构，完善的文档注释，确保项目长期可维护与扩展</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>跨平台</h3>
+                    <p>一套代码，多端运行。高效交付iOS与Android应用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>安全可靠</h3>
+                    <p>遵循最佳安全实践，保护用户数据安全与隐私</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>持续迭代</h3>
+                    <p>快速响应需求变化，持续优化产品体验与功能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section" id="skills">
         <div class="container">
             <div class="section-header">
                 <h2>技术栈</h2>
-                <p>熟练掌握多种技术，持续学习与进步</p>
+                <p>深耕移动开发领域，持续学习与进步</p>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">🤖</div>
-                    <h3>Android 原生开发</h3>
-                    <p>深耕Android原生开发，精通架构设计与性能优化，打造流畅的用户体验</p>
+                    <div class="skill-header">
+                        <div class="skill-icon">🤖</div>
+                        <h3>Android 原生开发</h3>
+                    </div>
+                    <p>深耕Android原生开发多年，精通架构设计与性能优化。熟悉Material Design设计规范，能够打造流畅、美观、易用的Android应用。</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Kotlin</span>
                         <span class="skill-tag">Java</span>
                         <span class="skill-tag">Jetpack</span>
                         <span class="skill-tag">Compose</span>
+                        <span class="skill-tag">Coroutines</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>Flutter 开发</h3>
-                    <p>跨平台移动应用开发专家，一套代码多端运行，高效交付优质产品</p>
+                    <div class="skill-header">
+                        <div class="skill-icon">�</div>
+                        <h3>Flutter 开发</h3>
+                    </div>
+                    <p>跨平台移动应用开发专家，一套代码多端运行。熟练运用Flutter框架与Dart语言，高效交付高质量iOS与Android应用。</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Dart</span>
                         <span class="skill-tag">Flutter</span>
                         <span class="skill-tag">Flame</span>
                         <span class="skill-tag">Provider</span>
+                        <span class="skill-tag">Bloc</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
+    <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-header">
                 <h2>精选项目</h2>
@@ -594,11 +751,9 @@
                     <div class="project-content">
                         <h3>Android Applications</h3>
                         <p>原生Android应用开发，采用Kotlin与Jetpack组件，注重性能优化与用户体验。</p>
-                        <div class="project-links">
-                            <a href="https://github.com/liberations" class="project-link" target="_blank">
-                                <span>GitHub</span>
-                            </a>
-                        </div>
+                        <a href="https://github.com/liberations" class="project-link" target="_blank">
+                            <span>查看详情 →</span>
+                        </a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -606,11 +761,9 @@
                     <div class="project-content">
                         <h3>Flutter Projects</h3>
                         <p>跨平台Flutter应用与游戏开发，一套代码多端运行，高效交付。</p>
-                        <div class="project-links">
-                            <a href="https://github.com/liberations" class="project-link" target="_blank">
-                                <span>GitHub</span>
-                            </a>
-                        </div>
+                        <a href="https://github.com/liberations" class="project-link" target="_blank">
+                            <span>查看详情 →</span>
+                        </a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -618,11 +771,9 @@
                     <div class="project-content">
                         <h3>Game Development</h3>
                         <p>基于Flame引擎的Flutter游戏开发，探索移动游戏的无限可能。</p>
-                        <div class="project-links">
-                            <a href="https://github.com/liberations" class="project-link" target="_blank">
-                                <span>GitHub</span>
-                            </a>
-                        </div>
+                        <a href="https://github.com/liberations" class="project-link" target="_blank">
+                            <span>查看详情 →</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -638,14 +789,14 @@
             <div class="contact-grid">
                 <div class="contact-card">
                     <div class="contact-icon">
-                        <img src="images/github.png" alt="GitHub" style="width: 32px; height: 32px;">
+                        <img src="images/github.png" alt="GitHub">
                     </div>
                     <h3>GitHub</h3>
                     <a href="https://github.com/liberations" target="_blank">github.com/liberations</a>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon">
-                        <img src="images/qq.png" alt="QQ" style="width: 32px; height: 32px;">
+                        <img src="images/qq.png" alt="QQ">
                     </div>
                     <h3>QQ</h3>
                     <a href="https://qm.qq.com/q/1487098940" target="_blank" rel="noopener">1487098940</a>
@@ -655,7 +806,7 @@
     </section>
 
     <footer>
-        <div class="container">
+        <div class="footer-content">
             <div class="social-links">
                 <a href="https://github.com/liberations" class="social-link" target="_blank" title="GitHub">
                     <img src="images/github.png" alt="GitHub">
@@ -664,7 +815,9 @@
                     <img src="images/qq.png" alt="QQ">
                 </a>
             </div>
-            <p>&copy; 2024 Liberations. All rights reserved.</p>
+            <p class="footer-text">
+                &copy; 2024 Liberations. All rights reserved.
+            </p>
         </div>
     </footer>
 </body>
